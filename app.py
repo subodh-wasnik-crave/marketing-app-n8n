@@ -6,26 +6,35 @@ import views.video_script
 
 # 1. Global Page Config (Must be here, only once)
 st.set_page_config(
-    page_title="Crave Marketing App",
+    page_title="Marketing Suite",
     layout="wide"
 )
 
 # 2. Styling
 st.markdown("""
 <style>
-    .st-key-email_btn button, .st-key-video_btn button, .st-key-blog_btn button, .st-key-linkedin_btn button, .customer_segmentation_btn{
+    .st-key-email_btn button, 
+    .st-key-video_btn button, 
+    .st-key-blog_btn button, 
+    .st-key-linkedin_btn button,
+    [data-testid="stLinkButton"] a{
         width: 100%;
         border-radius: 8px;
         height: 6em;
+        background-color: white;
+        border: 1px solid #ddd;
     }
-    [data-testid="stLinkButton"] a {
-        width: 100%;
-        border-radius: 8px;
-        height: 6em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+      
+    .st-key-email_btn button p, 
+    .st-key-video_btn button p, 
+    .st-key-blog_btn button p, 
+    .st-key-linkedin_btn button p,
+    [data-testid="stLinkButton"] p {
+        font-size: 24px !important;  /* Much larger text */
+        font-weight: 800 !important; /* Extra Bold */
     }
+
     .output-box {
         border: 1px solid #ddd;
         border-radius: 10px;
@@ -53,11 +62,16 @@ def navigate_to(page):
 
 # 4. Home Page
 def page_home():
-    st.markdown('<div class="main-header">CRAVE MARKETING APP</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">MARKETING SUITE</div>', unsafe_allow_html=True)
     st.write("")
     
     _, col1, col2, _ = st.columns([1, 2, 2, 1])
     with col1:
+        st.link_button(
+            "Customer Segmentation App ", 
+            url="https://customer-segmentation-crave.streamlit.app/", 
+            use_container_width=True
+            )
         if st.button("Email Generator", use_container_width=True, key="email_btn"):
             navigate_to("Email")
         if st.button("Video Script Generator", use_container_width=True, key="video_btn"):
@@ -67,14 +81,15 @@ def page_home():
             url="https://crave-chatbot.vercel.app/",
             use_container_width=True
         )
-        st.link_button(
-            "Customer Segmentation App ", 
-            url="https://customer-segmentation-crave.streamlit.app/", 
-            use_container_width=True
-            )
+
 
             
     with col2:
+        st.link_button(
+            "Sentiment Analysis App",
+            url="https://int_ai_sentimentanalysis-proud-parrot-ip.cfapps.eu10-004.hana.ondemand.com/",
+            use_container_width=True
+            )
         if st.button("Blog Generator", use_container_width=True, key="blog_btn"):
             navigate_to("Blog")
         if st.button("LinkedIn Post Generator", use_container_width=True, key="linkedin_btn"):
@@ -84,11 +99,7 @@ def page_home():
             url="https://rfp-demo-1-u9ft5cqd2nuvfc9mrckaig.streamlit.app/",
             use_container_width=True
             )
-        st.link_button(
-            "Sentiment Analysis App",
-            url="https://int_ai_sentimentanalysis-proud-parrot-ip.cfapps.eu10-004.hana.ondemand.com/",
-            use_container_width=True
-            )
+
         
 
 # 5. Router
